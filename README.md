@@ -74,7 +74,7 @@ JWT_SECRET=supersecretkey
 
 ---
 
-## 🐳 Running with Docker (Bonus)
+## 🐳 Running with Docker
 
 To run both MongoDB and the API with Docker:
 

@@ -1,98 +1,206 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🧩 Kenility Technical Test
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This project was developed as part of a technical assessment for **Kenility**.  
+It implements a **RESTful API** using **NestJS** and **MongoDB**, featuring authentication, product and order management, and analytical endpoints.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## 🚀 Features
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Core Requirements
+- **NestJS** API connected to **MongoDB** using `@nestjs/mongoose`
+- **JWT Authentication** for secure access
+- **Product Management**
+    - Create, list, and retrieve products
+    - Fields: `name`, `sku`, `picture`, and `price`
+    - File upload supported for product images
+- **Order Management**
+    - Create and update orders
+    - Fields: `identifier`, `clientName`, `total`, and `productList`
+- **Analytical Endpoints**
+    - Get total sold price for the last month
+    - Get highest amount order
 
-## Project setup
+### Bonus Features
+- **Dockerized environment** for both the API and MongoDB
+- **Search Products**
+    - Pagination
+    - Sorting
+    - Filtering (exact match and criteria)
 
+---
+
+## 🧱 Tech Stack
+
+| Layer | Technology |
+|-------|-------------|
+| Framework | [NestJS](https://nestjs.com/) |
+| Database | [MongoDB](https://www.mongodb.com/) |
+| ODM | [Mongoose](https://mongoosejs.com/) |
+| Auth | [JWT](https://jwt.io/) |
+| File Upload | [Multer](https://github.com/expressjs/multer) |
+| Containerization | [Docker](https://www.docker.com/) |
+| Language | TypeScript |
+
+---
+
+## ⚙️ Installation
+
+### 1. Clone the repository
 ```bash
-$ yarn install
+git clone https://github.com/diecastro/kenility-test.git
+cd kenility-test
 ```
 
-## Compile and run the project
-
+### 2. Install dependencies
+Using **Yarn** (recommended):
 ```bash
-# development
-$ yarn run start
-
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
+yarn install
 ```
 
-## Run tests
-
+Or with **npm**:
 ```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
+npm install
 ```
 
-## Deployment
+### 3. Configure environment variables
+Create a `.env` file in the root directory with the following content:
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ yarn install -g @nestjs/mau
-$ mau deploy
+```env
+PORT=3000
+MONGO_URI=mongodb://localhost:27017/kenility
+JWT_SECRET=supersecretkey
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+## 🐳 Running with Docker (Bonus)
 
-Check out a few resources that may come in handy when working with NestJS:
+To run both MongoDB and the API with Docker:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+docker-compose up --build
+```
 
-## Support
+This will:
+- Launch MongoDB on port `27017`
+- Start the NestJS API on port `3000`
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+---
 
-## Stay in touch
+## ▶️ Running the App Locally
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Development
+```bash
+yarn start:dev
+```
 
-## License
+### Production
+```bash
+yarn build
+yarn start:prod
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+API will be available at  
+👉 `http://localhost:3000`
+
+---
+
+## 🔐 Authentication
+
+JWT tokens are required for protected routes.  
+To authenticate:
+1. Register or log in using the `/auth/login` endpoint.
+2. Use the returned token as a `Bearer` token in your headers:
+
+```
+Authorization: Bearer <your_token_here>
+```
+
+---
+
+## 📦 API Endpoints
+
+### **Products**
+| Method | Endpoint | Description |
+|---------|-----------|-------------|
+| `POST` | `/products` | Create a new product (with image upload) |
+| `GET` | `/products/:id` | Retrieve a specific product |
+| `GET` | `/products` | List products with pagination, sorting, filtering |
+
+### **Orders**
+| Method | Endpoint | Description |
+|---------|-----------|-------------|
+| `POST` | `/orders` | Create a new order |
+| `PUT` | `/orders/:id` | Update an existing order |
+| `GET` | `/orders/total-last-month` | Get total sold price for the last month |
+| `GET` | `/orders/highest` | Get highest amount order |
+
+---
+
+## 🧪 Example Requests
+
+### Create Product
+```bash
+POST /products
+Content-Type: multipart/form-data
+Authorization: Bearer <token>
+
+{
+  "name": "Wireless Mouse",
+  "sku": "WM-123",
+  "price": 25.99,
+  "picture": <image_file>
+}
+```
+
+### Create Order
+```bash
+POST /orders
+Authorization: Bearer <token>
+
+{
+  "identifier": "ORD-001",
+  "clientName": "John Doe",
+  "products": ["<productId1>", "<productId2>"],
+  "total": 51.98
+}
+```
+
+---
+
+## 📊 Analytical Endpoints
+
+- **GET `/orders/total-last-month`**
+    - Returns the total sales amount from the last 30 days.
+- **GET `/orders/highest`**
+    - Returns the order with the highest total amount.
+
+---
+
+## 🧠 Project Structure
+
+```
+src/
+├── auth/
+├── products/
+├── orders/
+├── common/
+├── main.ts
+└── app.module.ts
+```
+
+---
+
+## 🧑‍💻 Author
+
+**Diego Alonso Castro Díaz**  
+[GitHub](https://github.com/diecastro) • [LinkedIn](https://www.linkedin.com/in/diego-castro-22882a76/)
+
+---
+
+## 📄 License
+
+This project is released under the **MIT License**.
+
+---

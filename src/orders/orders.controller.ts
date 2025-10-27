@@ -41,13 +41,13 @@ export class OrdersController {
   }
 
   @ApiOperation({ summary: 'Get order with highest amount' })
-  @Get('analytics/highest')
+  @Get('highest')
   highest() {
     return this.orders.highestAmountOrder();
   }
 
   @ApiOperation({ summary: 'Get total sold amount in the last month' })
-  @Get('analytics/last-month-total')
+  @Get('last-month-total')
   lastMonthTotal() {
     return this.orders.totalSoldLastMonth();
   }

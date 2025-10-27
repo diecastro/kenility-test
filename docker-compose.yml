@@ -15,7 +15,7 @@ services:
       MONGO_INITDB_DATABASE: kenility
 
   api:
-    build: .
+    build: src
     container_name: kenility_api
     restart: always
     ports:

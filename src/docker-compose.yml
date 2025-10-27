@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: mongo_db
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+      MONGO_INITDB_DATABASE: kenility
+
+  api:
+    build: .
+    container_name: kenility_api
+    restart: always
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://root:rootpassword@mongo:27017/kenility?authSource=admin
+      - PORT=3000
+    command: yarn start:prod
+
+volumes:
+  mongo_data:

@@ -20,6 +20,9 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { SearchProductsDto } from './dto/search-product.dto';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt.guard';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @ApiTags('Products')
 @Controller('products')
@@ -46,6 +49,8 @@ export class ProductsController {
   })
   @ApiOperation({ summary: 'Create product' })
   @ApiResponse({ status: 201, description: 'Product created successfully' })
+  @ApiBearerAuth('JWT')
+  @UseGuards(JwtAuthGuard)
   @Post()
   @UseInterceptors(FileInterceptor('picture', { storage: memoryStorage() }))
   async create(

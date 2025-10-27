@@ -1,8 +1,22 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { JwtAuthGuard } from '../auth/jwt.guard';
 
 @ApiTags('Orders')
 @Controller('orders')
@@ -12,11 +26,15 @@ export class OrdersController {
   @ApiOperation({ summary: 'Create a new order' })
   @ApiResponse({ status: 201, description: 'Order created successfully' })
   @Post()
+  @ApiBearerAuth('JWT')
+  @UseGuards(JwtAuthGuard)
   create(@Body() dto: CreateOrderDto) {
     return this.orders.create(dto);
   }
 
   @ApiOperation({ summary: 'Update an existing order' })
+  @ApiBearerAuth('JWT')
+  @UseGuards(JwtAuthGuard)
   @Patch(':identifier')
   update(@Param('identifier') identifier: string, @Body() dto: UpdateOrderDto) {
     return this.orders.update(identifier, dto);
